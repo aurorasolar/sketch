@@ -2,11 +2,11 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "aurora-sketch"
-  s.version     = '0.0.2'
+  s.name        = "sketch-in-ruby"
+  s.version     = '0.0.1'
   s.authors     = ["Brandon Fosdick", "Meseker Yohannes"]
-  s.email       = ["bfoz@bfoz.net"]
-  s.homepage    = "http://github.com/bfoz/sketch"
+  s.email       = ["meseker.yohannes@gmail.com"]
+  s.homepage    = "http://github.com/meseker/sketch"
   s.summary     = %q{2D mechanical sketches}
   s.description = %q{Sketches used in the creation of mechanical designs}
 
@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency 'aurora-geometry'
+  s.add_dependency 'geometry-in-ruby'
 end

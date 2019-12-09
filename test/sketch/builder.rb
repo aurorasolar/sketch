@@ -108,7 +108,7 @@ describe Sketch::Builder do
 
 	describe "with a block" do
 	    before do
-		subject.group origin:[1,2,3] { circle diameter:1 }
+		subject.group(origin:[1,2,3]) { circle(diameter:1) }
 	    end
 
 	    it "must have a group element" do
@@ -123,7 +123,7 @@ describe Sketch::Builder do
 
     describe "when adding a translation" do
 	before do
-	    subject.translate [1,2] { circle diameter:1 }
+	    subject.translate([1,2]) { circle diameter:1 }
 	end
 
 	it "must have a group element" do
@@ -142,7 +142,7 @@ describe Sketch::Builder do
     describe "when adding a nested translation" do
 	before do
 	    subject.translate [1,2] do
-		translate [3,4] { circle diameter:2 }
+		translate([3,4]) { circle diameter:2 }
 	    end
 	end
 

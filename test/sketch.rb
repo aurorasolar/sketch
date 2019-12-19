@@ -75,7 +75,7 @@ describe Sketch do
 	square.width.must_equal 10
 	square.height.must_equal 10
 	square.center.must_equal Point[0,0]
-	square.points.must_equal [Point[-5,-5], Point[5,-5], Point[5,5], Point[-5,5]]
+	square.points.to_set.must_equal [Point[-5,-5], Point[5,-5], Point[5,5], Point[-5,5]].to_set
     end
 
     describe "when constructed with a block" do
@@ -110,7 +110,7 @@ describe Sketch do
     end
 
     describe "properties" do
-	subject { Sketch.new { add_circle [1,-2], 3; add_circle([-1,2], 3) } }
+	subject { Sketch.new { add_circle([1,-2], 3); add_circle([-1,2], 3) } }
 
 	it "must have a bounds rectangle" do
 	    subject.bounds.must_equal Rectangle.new(from:[-4,-5], to:[4,5])
@@ -172,7 +172,7 @@ describe Sketch do
     end
 
     describe "when the Sketch contains a group" do
-	subject { Sketch::Builder.new(Sketch.new).evaluate { translate [1,2] { circle [1,-2], 3; circle([-1,2], 3) } } }
+	subject { Sketch::Builder.new(Sketch.new).evaluate { translate([1,2]) { circle([1,-2], 3); circle([-1,2], 3) } } }
 
 	it "must have a max property" do
 	    subject.max.must_equal Point[5,7]

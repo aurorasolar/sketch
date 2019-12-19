@@ -3,12 +3,13 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "sketch-in-ruby"
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.authors     = ["Brandon Fosdick", "Meseker Yohannes"]
   s.email       = ["myohannes@aurorasolar.com"]
   s.homepage    = "https://github.com/aurorasolar/sketch"
   s.summary     = %q{2D mechanical sketches}
   s.description = %q{Sketches used in the creation of mechanical designs}
+  s.required_ruby_version = "~> 2.6"
 
   s.rubyforge_project = "sketch"
 
@@ -18,4 +19,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'geometry-in-ruby'
+
+  s.add_development_dependency 'minitest'
 end

@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "sketch-in-ruby"
-  s.version     = '0.0.2'
+  s.version     = '1.0.0'
   s.authors     = ["Brandon Fosdick", "Meseker Yohannes"]
   s.email       = ["myohannes@aurorasolar.com"]
   s.homepage    = "https://github.com/aurorasolar/sketch"

@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'sketch'
+require 'set'
 
 describe Sketch do
     Size = Geometry::Size

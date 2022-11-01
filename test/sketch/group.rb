@@ -7,17 +7,17 @@ describe Sketch::Group do
       subject { Sketch::Group.new }
 
       it "must have an identity transformation" do
-        _(subject.transformation.identity?).must_equal true
+        assert_equal subject.transformation.identity?, true
       end
 
       it "must be empty" do
-        _(subject.elements.size).must_equal 0
+        assert_equal subject.elements.size, 0
       end
     end
 
     it "must accept valid Transformation arguments" do
       group = Sketch::Group.new origin:[1,2,3]
-      _(group.transformation.translation).must_equal Point[1,2,3]
+      assert_equal group.transformation.translation, Point[1,2,3]
     end
   end
 end

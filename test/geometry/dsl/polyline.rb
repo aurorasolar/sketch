@@ -28,7 +28,7 @@ describe Geometry::DSL::Polyline do
 
   it 'must have a start command' do
     subject.start_at [1,2]
-    _(subject.last).must_equal Point[1,2]
+    assert_equal subject.last, Point[1,2]
   end
 
   describe 'when started' do
@@ -37,45 +37,45 @@ describe Geometry::DSL::Polyline do
     end
 
     it 'must refuse to start again' do
-      _(-> { subject.start_at [2,3] }).must_raise Geometry::DSL::Polyline::BuildError
+      assert_raises(Geometry::DSL::Polyline::BuildError) { subject.start_at [2,3] }
     end
 
     it 'must have a close command' do
       subject.move_to [3,4]
       subject.move_to [4,4]
       subject.close
-      _(subject.last).must_equal Point[1,2]
+      assert_equal subject.last, Point[1,2]
     end
 
     it 'must have a move_to command' do
       subject.move_to [3,4]
-      _(subject.last).must_equal Point[3,4]
+      assert_equal subject.last, Point[3,4]
     end
 
     it 'must have a relative horizontal move command' do
       subject.move_x 3
-      _(subject.last).must_equal Point[4,2]
+      assert_equal subject.last, Point[4,2]
     end
 
     it 'must have a relative vertical move command' do
       subject.move_y 4
-      _(subject.last).must_equal Point[1,6]
+      assert_equal subject.last, Point[1,6]
     end
 
     it 'must have an up command' do
-      _(subject.up(3).last).must_equal Point[1,5]
+      assert_equal subject.up(3).last, Point[1,5]
     end
 
     it 'must have a down command' do
-      _(subject.down(3).last).must_equal Point[1,-1]
+      assert_equal subject.down(3).last, Point[1,-1]
     end
 
     it 'must have a left command' do
-      _(subject.left(3).last).must_equal Point[-2,2]
+      assert_equal subject.left(3).last, Point[-2,2]
     end
 
     it 'must have a right command' do
-      _(subject.right(3).last).must_equal Point[4,2]
+      assert_equal subject.right(3).last, Point[4,2]
     end
   end
 end

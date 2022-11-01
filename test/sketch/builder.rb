@@ -21,14 +21,14 @@ describe Sketch::Builder do
     end
 
     it "must have a push method that pushes elements" do
-      builder.push Rectangle.new size:[5, 5]
-      _(builder.sketch.elements.last).must_be_kind_of Rectangle
+      builder.push Rectangle.new(size:[5, 5])
+      assert_kind_of Rectangle, builder.sketch.elements.last
     end
 
     describe "command handlers" do
       it "must recognize the rectangle command" do
         _(builder.rectangle([1,2], [3,4])).must_be_instance_of(Rectangle)
-        _(builder.sketch.elements.last).must_be_kind_of Rectangle
+        assert_kind_of Rectangle, builder.sketch.elements.last
       end
     end
 
@@ -41,7 +41,7 @@ describe Sketch::Builder do
         end
 
         it "should create the commanded elements" do
-          _(builder.sketch.elements.last).must_be_kind_of Geometry::Square
+          assert_kind_of Geometry::Square, builder.sketch.elements.last
         end
 
         it "triangle" do
@@ -58,12 +58,12 @@ describe Sketch::Builder do
         end
 
         it "must define the parameter" do
-          _(builder.sketch.parameterA).must_equal 42
+          assert_equal builder.sketch.parameterA, 42
         end
 
         it "must use the parameter" do
           _(builder.sketch.elements.last).must_be_instance_of Geometry::Circle
-          _(builder.sketch.elements.last.radius).must_equal 42
+          assert_equal builder.sketch.elements.last.radius, 42
         end
       end
 
@@ -90,7 +90,7 @@ describe Sketch::Builder do
     }
 
     it "must evaluate the block" do
-      _(builder.sketch.elements.last).must_be_kind_of Geometry::Square
+      assert_kind_of Geometry::Square, builder.sketch.elements.last
     end
   end
 
@@ -101,8 +101,8 @@ describe Sketch::Builder do
       end
 
       it "must have a group element" do
-        _(subject.sketch.elements.first).must_be_kind_of Sketch::Group
-        _(subject.sketch.elements.first.translation).must_equal Point[1,2,3]
+        assert_kind_of Sketch::Group, subject.sketch.elements.first
+        assert_equal subject.sketch.elements.first.translation, Point[1,2,3]
       end
     end
 
@@ -112,11 +112,11 @@ describe Sketch::Builder do
       end
 
       it "must have a group element" do
-        _(subject.sketch.elements.first).must_be_kind_of Sketch::Group
+        assert_kind_of Sketch::Group, subject.sketch.elements.first
       end
 
       it "must have the correct property values" do
-        _(subject.sketch.elements.first.translation).must_equal Point[1,2,3]
+        assert_equal subject.sketch.elements.first.translation, Point[1,2,3]
       end
     end
   end
@@ -127,15 +127,15 @@ describe Sketch::Builder do
     end
 
     it "must have a group element" do
-      _(subject.sketch.elements.first).must_be_kind_of Sketch::Group
+      assert_kind_of Sketch::Group, subject.sketch.elements.first
     end
 
     it "must have the correct property values" do
-      _(subject.sketch.elements.first.translation).must_equal Point[1,2]
+      assert_equal subject.sketch.elements.first.translation, Point[1,2]
     end
 
     it 'must reject higher dimensions' do
-      _(-> { subject.translate [1,2,3] }).must_raise ArgumentError
+      assert_raises(ArgumentError) { subject.translate [1,2,3] }
     end
   end
 
@@ -147,21 +147,21 @@ describe Sketch::Builder do
     end
 
     it "must have a group element" do
-      _(subject.sketch.elements.first).must_be_kind_of Sketch::Group
+      assert_kind_of Sketch::Group, subject.sketch.elements.first
     end
 
     it "must have the correct property values" do
-      _(subject.sketch.elements.first.translation).must_equal Point[1,2]
+      assert_equal subject.sketch.elements.first.translation, Point[1,2]
     end
 
     it "must have a sub-group element" do
       outer_group = subject.sketch.elements.first
-      _(outer_group.elements.first).must_be_kind_of Sketch::Group
+      assert_kind_of Sketch::Group, outer_group.elements.first
     end
 
     it "must set the sub-group properties" do
       outer_group = subject.sketch.elements.first
-      _(outer_group.elements.first.translation).must_equal Point[3,4]
+      assert_equal outer_group.elements.first.translation, Point[3,4]
     end
   end
 end

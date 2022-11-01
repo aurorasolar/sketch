@@ -36,15 +36,15 @@ describe Sketch::DSL do
   it "must have a hexagon command" do
     subject.hexagon center:[1,2], radius:5
     _(subject.last).must_be_instance_of Geometry::RegularPolygon
-    _(subject.last.center).must_equal Point[1,2]
-    _(subject.last.edge_count).must_equal 6
-    _(subject.last.radius).must_equal 5
+    assert_equal subject.last.center, Point[1,2]
+    assert_equal subject.last.edge_count, 6
+    assert_equal subject.last.radius, 5
   end
 
   it 'must have a path command that takes a list of points' do
     subject.path [1,2], [2,3]
-    _(subject.last).must_be_kind_of Geometry::Path
-    _(subject.last.elements.count).must_equal 1
+    assert_kind_of Geometry::Path, subject.last
+    assert_equal subject.last.elements.count, 1
   end
 
   it 'must have a path command that takes a block' do
@@ -52,8 +52,8 @@ describe Sketch::DSL do
       start_at    [0,0]
       move_to	[1,1]
     end
-    _(subject.last).must_be_kind_of Geometry::Path
-    _(subject.last.elements.count).must_equal 1
+    assert_kind_of Geometry::Path, subject.last
+    assert_equal subject.last.elements.count, 1
   end
 
   describe "when layout" do
@@ -67,8 +67,8 @@ describe Sketch::DSL do
         group = subject.first
         _(group).must_be_instance_of Sketch::Layout
 
-        _(group.first).must_be_kind_of Geometry::Rectangle
-        _(group.last).must_be_kind_of Sketch::Group
+        assert_kind_of Geometry::Rectangle, group.first
+        assert_kind_of Sketch::Group, group.last
       end
 
       it "must do a vertical layout" do
@@ -86,8 +86,8 @@ describe Sketch::DSL do
 
   it 'must have a polygon command that takes a list of points' do
     polygon = subject.polygon [0,0], [1,0], [1,1], [0,1]
-    _(polygon).must_be_kind_of Sketch::Polygon
-    _(subject.last.vertices.size).must_equal 4
+    assert_kind_of Sketch::Polygon, polygon
+    assert_equal subject.last.vertices.size, 4
   end
 
   it 'must have a polygon command that takes a block' do
@@ -97,8 +97,8 @@ describe Sketch::DSL do
       move_to	    [1,1]
       move_to	    [0,1]
     end
-    _(subject.last).must_be_kind_of Sketch::Polygon
-    _(subject.elements.size).must_equal 1
-    _(subject.last.vertices.size).must_equal 4
+    assert_kind_of Sketch::Polygon, subject.last
+    assert_equal subject.elements.size, 1
+    assert_equal subject.last.vertices.size, 4
   end
 end

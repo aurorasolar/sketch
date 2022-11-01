@@ -8,6 +8,6 @@ describe Sketch::Builder::Path do
   let(:builder) { Sketch::Builder::Path.new }
 
   it "must build a Path from a block" do
-    _(builder.evaluate {}).must_be_kind_of Path
+    assert_kind_of Path, builder.evaluate {}
   end
 end

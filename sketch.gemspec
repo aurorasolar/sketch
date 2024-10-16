@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/aurorasolar/sketch"
   s.summary     = %q{2D mechanical sketches}
   s.description = %q{Sketches used in the creation of mechanical designs}
-  s.required_ruby_version = ">= 2.7.5", "< 3.2"
+  s.required_ruby_version = ">= 2.7.5"
 
   s.rubyforge_project = "sketch"
 
